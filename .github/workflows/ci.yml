@@ -1,0 +1,54 @@
+name: API Automation Pipeline
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+  workflow_dispatch:
+    inputs:
+      test-run:
+        description: 'Run Tests (y/n)?'
+        required: true
+        default: 'y'
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout do repositório
+        uses: actions/checkout@v4
+
+      - name: Configurar JDK 21
+        uses: actions/setup-java@v4
+        with:
+          java-version: 21
+          distribution: temurin
+
+      - name: Cache do Gradle (opcional para acelerar builds)
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.gradle/caches
+            ~/.gradle/wrapper
+          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
+          restore-keys: |
+            ${{ runner.os }}-gradle
+
+      - name: Dar permissão ao wrapper do Gradle
+        run: chmod +x ./gradlew
+
+      - name: Executar testes com Gradle
+        run: ./gradlew clean test --info
+
+      - name: Gerar relatório Allure
+        run: ./gradlew allureReport
+
+      - name: Publicar relatório Allure como artefato
+        uses: actions/upload-artifact@v4
+        with:
+          name: allure-report
+          path: build/reports/allure-report
