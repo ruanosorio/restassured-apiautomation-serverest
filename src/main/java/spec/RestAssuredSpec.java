@@ -8,13 +8,13 @@ import io.restassured.specification.RequestSpecification;
 import static io.restassured.filter.log.LogDetail.ALL;
 import static utils.BaseTest.BASE_URI;
 
-public class ReqResAPISpecification {
+public class RestAssuredSpec {
 
-    private ReqResAPISpecification(){
+    private RestAssuredSpec(){
         throw new IllegalStateException("Utility class");
     }
 
-    public static RequestSpecification getSpec(){
+    public static RequestSpecification requestSpec(){
         return new RequestSpecBuilder().
                 setBaseUri(BASE_URI).
                 setContentType(ContentType.JSON).

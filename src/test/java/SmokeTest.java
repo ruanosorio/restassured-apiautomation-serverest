@@ -1,9 +1,13 @@
+
 import clients.UserClient;
-import io.restassured.RestAssured;
+import io.qameta.allure.Description;
 import io.restassured.response.Response;
-import org.testng.Assert;
 import org.testng.annotations.Test;
 import utils.BaseTest;
+
+import static org.hamcrest.Matchers.*;
+import static org.apache.http.HttpStatus.SC_OK;
+
 
 import static org.apache.http.HttpStatus.SC_OK;
 

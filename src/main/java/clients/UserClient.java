@@ -3,8 +3,9 @@ package clients;
 import dto.UserDTO;
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
-import io.restassured.specification.RequestSpecification;
-import spec.ReqResAPISpecification;
+import static io.restassured.RestAssured.given;
+import spec.RestAssuredSpec;
+
 
 public class UserClient {
 
@@ -40,7 +41,6 @@ public class UserClient {
                 .when()
                 .get(USERS_ENDPOINT);
     }
-
 
     public Response updateUser(String userId, UserDTO user, String token) {
         return given()
