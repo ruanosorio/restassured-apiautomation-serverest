@@ -4,9 +4,9 @@ import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.filter.log.ResponseLoggingFilter;
 import io.restassured.http.ContentType;
 import io.restassured.specification.RequestSpecification;
+import utils.BaseTest;
 
 import static io.restassured.filter.log.LogDetail.ALL;
-import static utils.BaseTest.BASE_URI;
 
 public class RestAssuredSpec {
 
@@ -15,12 +15,11 @@ public class RestAssuredSpec {
     }
 
     public static RequestSpecification requestSpec(){
-        return new RequestSpecBuilder().
-                setBaseUri(BASE_URI).
-                setContentType(ContentType.JSON).
-                log(ALL).
-                addFilter(new ResponseLoggingFilter()).
-                build();
+        return new RequestSpecBuilder()
+                .setBaseUri(BaseTest.BASE_URI)
+                .setContentType(ContentType.JSON)
+                .log(ALL)
+                .addFilter(new ResponseLoggingFilter())
+                .build();
     }
-
 }

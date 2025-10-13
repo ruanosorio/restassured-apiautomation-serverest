@@ -2,10 +2,10 @@ package funcional;
 
 import clients.UserClient;
 import dto.UserDTO;
-import groovy.util.logging.Slf4j;
 import io.restassured.response.Response;
 import org.testng.Assert;
 import org.testng.annotations.Test;
+import lombok.extern.slf4j.Slf4j;
 
 import static org.hamcrest.Matchers.*;
 
@@ -20,7 +20,7 @@ public class UserTest {
     public void testCreateUserSuccessfully() {
         log.info("Iniciando teste: Criação de novo usuário");
 
-        UserDTO newUser = new UserDTO("Novo Usuario", "novo@usuario.com", "senha123", "true", null);
+        UserDTO newUser = new UserDTO(null, "Novo Usuario", "novo@usuario.com", "senha123", "true");
         Response response = userClient.createUser(newUser);
 
         log.info("Resposta recebida: {}", response.asPrettyString());
@@ -38,7 +38,7 @@ public class UserTest {
     public void testCreateUserWithExistingEmail() {
         log.info("Iniciando teste: Criação de usuário com email duplicado");
 
-        UserDTO existingUser = new UserDTO("Outro Usuario", "novo@usuario.com", "outrasenha", "false", null);
+        UserDTO existingUser = new UserDTO(null, "Outro Usuario", "novo@usuario.com", "outrasenha", "false");
         Response response = userClient.createUser(existingUser);
 
         log.info("Resposta recebida: {}", response.asPrettyString());
@@ -95,7 +95,7 @@ public class UserTest {
     public void testUpdateUser() {
         log.info("Iniciando teste: Atualização de usuário");
 
-        UserDTO updatedUser = new UserDTO("Usuario Atualizado", "usuario.atualizado@test.com", "novaSenha", "false", null);
+        UserDTO updatedUser = new UserDTO(null, "Usuario Atualizado", "usuario.atualizado@test.com", "novaSenha", "false");
         Response response = userClient.updateUser(userId, updatedUser, authToken);
 
         log.info("Resposta recebida: {}", response.asPrettyString());
