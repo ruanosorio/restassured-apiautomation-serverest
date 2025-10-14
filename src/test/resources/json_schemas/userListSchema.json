@@ -1,45 +1,43 @@
 {
-  "$schema" : "http://json-schema.org/draft-04/schema#" ,
-  "type" : "object" ,
-  "properties" : {
-    "quantidade" : {
-      "type" : "integer"
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "object",
+  "properties": {
+    "quantidade": {
+      "type": "integer"
     },
-    "usuários" : {
-      "type" : "array" ,
-      "items" : [
-        {
-          "tipo" : "objeto" ,
-          "propriedades" : {
-            "nome" : {
-              "tipo" : "string"
-            },
-            "e-mail" : {
-              "tipo" : "string"
-            },
-            "senha" : {
-              "tipo" : "string"
-            },
-            "administrador" : {
-              "tipo" : "string"
-            },
-            "_id" : {
-              "tipo" : "string"
-            }
+    "usuarios": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "nome": {
+            "type": "string"
           },
-          "required" : [
-            "nome" ,
-            "email" ,
-            "password" ,
-            "administrador" ,
-            "_id"
-          ]
-        }
-      ]
+          "email": {
+            "type": "string"
+          },
+          "password": {
+            "type": "string"
+          },
+          "administrador": {
+            "type": "string"
+          },
+          "_id": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "nome",
+          "email",
+          "password",
+          "administrador",
+          "_id"
+        ]
+      }
     }
   },
-  "required" : [
-    "quantidade" ,
-    "usuários"
+  "required": [
+    "quantidade",
+    "usuarios"
   ]
 }
