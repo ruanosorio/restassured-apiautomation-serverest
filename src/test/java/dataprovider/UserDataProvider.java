@@ -7,7 +7,7 @@ public class UserDataProvider {
 
 
     @DataProvider(name = "criarNovoUsuario")
-    public static Object[][] criarUsuarioData() {
+    public static Object[][] createNewUser() {
         UserDTO usuario = new UserDTO();
         usuario.setNome("Automation User");
         usuario.setEmail("automation@test.com");
@@ -17,7 +17,7 @@ public class UserDataProvider {
     }
 
     @DataProvider(name = "atualizarUsuario")
-    public static Object[][] atualizarUsuarioData() {
+    public static Object[][] updateUser() {
         UserDTO usuarioAtualizado = new UserDTO();
         usuarioAtualizado.setNome("Updated Automation User");
         usuarioAtualizado.setEmail("updated.automation@test.com");
